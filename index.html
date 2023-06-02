@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&family=Monomaniac+One&display=swap" rel="stylesheet">    <title>Rock-Paper-Scissors</title>
+</head>
+<body>
+    <div class="container">
+      <h1 class="salutation">
+        <span class="text-wraper" id="salut"> Welcome to Rock Paper Scissors game</span>
+      </h1>
+    </div>
+    <div class="main__container">
+      <div class="weapons__container">
+        <img class="main__img" src="./pictures/paper.svg" alt="paper">
+        <img class="main__img" src="./pictures/rock.svg" alt="rock">
+        <img class="main__img" src="./pictures/scissors.svg"  alt="scissors">
+      </div>
+      <div class="battle__container">
+        <img class="battle__img" src="./pictures/paper.svg" id="user__picture" alt="paper">
+        <img class="battle__img" src="./pictures/rock.svg" id="computer__picture" alt="rock">
+     </div>
+    </div>
+    <div class="result__container">
+      <div class="contenders__container">
+        <h3>you</h3>
+        <h3>computer</h3>
+      </div>
+      <div class="points">
+        <h3>0</h3>
+        <h3>0</h3>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="./script.js"></script>
+</body>
+</html>

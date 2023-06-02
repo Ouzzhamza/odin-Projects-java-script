@@ -1,0 +1,113 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: black;
+}
+
+.container {
+    height: 300px;
+    font-family: 'Monomaniac One', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container h1{
+    color:aliceblue;
+    font-size: 90px;
+    position: absolute;
+}
+
+.container .salutation {
+    z-index: 9999;
+}
+.container .cheering {
+    z-index: 1;
+}
+.salutation .letter {
+    transform-origin: 50% 100%;
+    display: inline-block;
+    line-height: 1em;
+}
+
+.cheering .letter {
+  opacity: 1;
+  transform-origin: 100% 50%;
+  display: inline-block;
+  line-height: 1em;
+}
+.main__container {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+}
+
+.main__img, .battle__img{
+    height: 250px;
+    width: 250px;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.weapons__container {
+    position:absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+    animation: fade-in 10s linear infinite;
+    animation-iteration-count: 1;
+}
+@keyframes fade-in {
+    0%{
+        opacity: 0;
+        pointer-events: none;
+    }
+    100% {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.battle__container {
+    position:absolute;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+    display: none;
+}
+
+
+
+.result__container {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    margin: 20px;
+    align-items: center;
+    font-family: 'Monomaniac One', sans-serif;
+    color: white;
+    animation: fade-in 10s linear infinite;
+    animation-iteration-count: 1;
+}
+
+.result__container h2 {
+    font-size: 60px;
+}
+.result__container h3 {
+    font-size: 50px;
+}
+.contenders__container{
+    display: flex;
+    gap: 200px;
+    justify-content: space-between;
+    margin-top: 80px;
+    margin-left: 80px;
+}
+
+.points {
+    display: flex;
+    gap: 270px
+}
