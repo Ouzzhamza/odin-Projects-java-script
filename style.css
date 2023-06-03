@@ -20,13 +20,13 @@
     position: absolute;
 }
 
-.container .salutation {
+.container .greetings {
     z-index: 9999;
 }
 .container .cheering {
     z-index: 1;
 }
-.salutation .letter {
+.greetings .letter {
     transform-origin: 50% 100%;
     display: inline-block;
     line-height: 1em;
@@ -57,8 +57,8 @@
     justify-content: center;
     align-items: center;
     gap: 200px;
-    animation: fade-in 10s linear infinite;
-    animation-iteration-count: 1;
+    /* animation: fade-in 10s linear infinite;
+    animation-iteration-count: 1; */
 }
 @keyframes fade-in {
     0%{
@@ -89,8 +89,8 @@
     align-items: center;
     font-family: 'Monomaniac One', sans-serif;
     color: white;
-    animation: fade-in 10s linear infinite;
-    animation-iteration-count: 1;
+    /* animation: fade-in 10s linear infinite;
+    animation-iteration-count: 1; */
 }
 
 .result__container h2 {

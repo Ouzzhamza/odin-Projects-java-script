@@ -1,11 +1,29 @@
-let salutationWrapper = document.querySelector('.salutation .text-wraper');
-salutationWrapper.innerHTML = salutationWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+//global variable of user choice  and comouter choice
+
+let userChoice;
+let computerChoice;
+
+
+let greetingsWrapper = document.querySelector('.greetings .text-wraper');
+greetingsWrapper.innerHTML = greetingsWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+
+// The document.querySelectorAll('.main__img') function gets all elements with the class main__img.
+// The forEach() function iterates over the elements and calls the zoomImage function on mouseover and the removeZoomEffect function on mouseleave.
+document.querySelectorAll('.main__img').forEach(function(image) {
+  image.addEventListener("mouseover", zoomImage);
+  image.addEventListener("mouseleave", removeZoomEffect);
+});
+
+document.querySelectorAll('.main__img').forEach(function(image){
+  image.addEventListener("click", showResult);
+});
 
 
 anime.timeline({loop: false})
   .add({
-    targets: '.salutation .letter',
-    // The animation scales the letters in the salutation element from 0 to 1 size over 1000ms.
+    targets: '.greetings .letter',
+    // The animation scales the letters in the greetings element from 0 to 1 size over 1000ms.
     scale: [0, 1],
     duration: 1000,
     elasticity: 1000,
@@ -17,14 +35,14 @@ anime.timeline({loop: false})
 
 
 setTimeout(() => {
-  // After 4000ms, the code updates the text of the h1 element and the contents of the salutationWrapper element.
+  // After 4000ms, the code updates the text of the h1 element and the contents of the greetingsWrapper element.
   let h1 = document.getElementById('salut');
   h1.textContent= "Let's find out if you're lucky today!";
-  salutationWrapper.innerHTML = salutationWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+  greetingsWrapper.innerHTML = greetingsWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
   anime.timeline({loop: false})
   .add({
-    targets: '.salutation .letter',
+    targets: '.greetings .letter',
     scale: [0, 1],
     duration: 1000,
     elasticity: 1000,
@@ -35,13 +53,13 @@ setTimeout(() => {
 
 
 setTimeout(() => {
-  // After 7000ms, the code updates the text of the h1 element and the contents of the salutationWrapper element.
+  // After 7000ms, the code updates the text of the h1 element and the contents of the greetingsWrapper element.
   let h1 = document.getElementById('salut');
   h1.textContent = "choose your weapon";
-  salutationWrapper.innerHTML = salutationWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+  greetingsWrapper.innerHTML = greetingsWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
   anime.timeline({loop: false})
   .add({
-    targets: ".salutation",
+    targets: ".greetings",
     scale: [0, 1],
     duration: 1000,
     elasticity: 1000,
@@ -74,32 +92,80 @@ function removeZoomEffect(event) {
 }
 
 
-// The document.querySelectorAll('.main__img') function gets all elements with the class main__img.
-// The forEach() function iterates over the elements and calls the zoomImage function on mouseover and the removeZoomEffect function on mouseleave.
-document.querySelectorAll('.main__img').forEach(function(image) {
-  image.addEventListener("mouseover", zoomImage);
-  image.addEventListener("mouseleave", removeZoomEffect);
-});
 
-function computerPicture() {
-  // computer random picture 
-const computerPicture = document.getElementById('computer__picture');
+function computerChoiceFunction() {
+
+computerChoice = document.getElementById('computer__picture');
 
 const images = ["paper.svg", "rock.svg", "scissors.svg"];
 
 // Get a random image from the images array.
 const randomImage = images[Math.floor(Math.random() * images.length)];
 
-console.log(computerPicture.src);
-// Set the computer__picture element to the random image.
-computerPicture.src = `./pictures/${randomImage}`;
 
-console.log(computerPicture.src);
+computerChoice.setAttribute('src', `./pictures/${randomImage}`);
+
 }
+
+
+  function comparingChoices(userAttr, computerAttr) {
+    let winner = userAttr;
+    let loser = computerAttr;
+  
+    switch ([userAttr, computerAttr]) {
+      case ["./pictures/paper.svg", "./pictures/rock.svg"]:
+        winner = "./pictures/winner-paper.svg";
+        loser = "./pictures/loser-rock.svg";
+        console.log(winner);
+        break;
+      case ["./pictures/paper.svg", "./pictures/scissors.svg"]:
+        winner = "./pictures/loser-paper.svg";
+        loser = "./pictures/winner-rock.svg";
+        console.log(winner);
+        break;
+      case ["./pictures/scissors.svg", "./pictures/paper.svg"]:
+        winner = "./pictures/winner-scissors.svg";
+        loser = "./pictures/loser-paper.svg";
+        console.log(winner);
+        break;
+      case ["./pictures/scissors.svg", "./pictures/rock.svg"]:
+        winner = "./pictures/loser-scissors.svg";
+        loser = "./pictures/winner-rock.svg";
+        console.log(winner);
+        break;
+      case ["./pictures/rock.svg", "./pictures/scissors.svg"]:
+        winner = "./pictures/winner-rock.svg";
+        loser = "./pictures/loser-scissors.svg";
+        console.log(winner);
+        break;
+      case ["./pictures/rock.svg", "./pictures/paper.svg"]:
+        winner = "./pictures/loser-rock.svg";
+        loser = "./pictures/winner-scissors.svg";
+        console.log(winner);
+        break;
+        console.log(winner);
+    }
+
+    userChoice.setAttribute("src", winner);
+    computerChoice.setAttribute("src", loser);
+  }
+
 
 function showResult(event) {
 
-  computerPicture();
+  computerChoiceFunction();
+  userChoice = document.getElementById('user__picture');
+
+
+  let userAttr =  event.target.getAttribute('src');
+  let computerAttr = computerChoice.getAttribute('src');
+  // console.log(event.target.getAttribute('src'));
+  comparingChoices(userAttr, computerAttr);
+
+
+
+
+  //~ this part works on replacing the weapons__container by battle__container
   // get the target
   let target = event.target;
 
@@ -113,17 +179,14 @@ function showResult(event) {
   weaponsContainer.style.display = "none";
   battleContainer.style.display = "flex";
 
-  // sho
+
   setTimeout(() => {
     battleContainer.style.display = "none";
     weaponsContainer.style.animation = "0s";
     weaponsContainer.style.display = "flex";
-  }, 1000);
+  }, 2000);
   
 }
 
-document.querySelectorAll('.main__img').forEach(function(image){
-  image.addEventListener("click", showResult);
-});
 
 
