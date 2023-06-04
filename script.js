@@ -2,6 +2,10 @@
 
 let userChoice;
 let computerChoice;
+let userScore = 0;
+let computerScore= 0; 
+
+
 
 
 let greetingsWrapper = document.querySelector('.greetings .text-wraper');
@@ -108,47 +112,52 @@ computerChoice.setAttribute('src', `./pictures/${randomImage}`);
 }
 
 
-  function comparingChoices(userAttr, computerAttr) {
-    let winner = userAttr;
-    let loser = computerAttr;
-  
-    switch ([userAttr, computerAttr]) {
-      case ["./pictures/paper.svg", "./pictures/rock.svg"]:
-        winner = "./pictures/winner-paper.svg";
-        loser = "./pictures/loser-rock.svg";
-        console.log(winner);
-        break;
-      case ["./pictures/paper.svg", "./pictures/scissors.svg"]:
-        winner = "./pictures/loser-paper.svg";
-        loser = "./pictures/winner-rock.svg";
-        console.log(winner);
-        break;
-      case ["./pictures/scissors.svg", "./pictures/paper.svg"]:
-        winner = "./pictures/winner-scissors.svg";
-        loser = "./pictures/loser-paper.svg";
-        console.log(winner);
-        break;
-      case ["./pictures/scissors.svg", "./pictures/rock.svg"]:
-        winner = "./pictures/loser-scissors.svg";
-        loser = "./pictures/winner-rock.svg";
-        console.log(winner);
-        break;
-      case ["./pictures/rock.svg", "./pictures/scissors.svg"]:
-        winner = "./pictures/winner-rock.svg";
-        loser = "./pictures/loser-scissors.svg";
-        console.log(winner);
-        break;
-      case ["./pictures/rock.svg", "./pictures/paper.svg"]:
-        winner = "./pictures/loser-rock.svg";
-        loser = "./pictures/winner-scissors.svg";
-        console.log(winner);
-        break;
-        console.log(winner);
+  function comparingChoices(userAttr, computerAttr) { 
+    // console.log(userAttr);
+    // console.log(computerAttr);
+    userChoice.setAttribute("src", userAttr); 
+    computerChoice.setAttribute("src", computerAttr); 
+
+    if (userAttr === "./pictures/paper.svg" && computerAttr === "./pictures/rock.svg") { 
+      userChoice.setAttribute("src", "./pictures/winner-paper.svg"); 
+      computerChoice.setAttribute("src", "./pictures/loser-rock.svg");
+      userScore = ++userScore;
+    }
+    if (userAttr === "./pictures/paper.svg" && computerAttr === "./pictures/scissors.svg") {
+      userChoice.setAttribute("src", "./pictures/loser-paper.svg"); 
+      computerChoice.setAttribute("src", "./pictures/winner-scissors.svg");
+      computerScore= ++computerScore;
+    } 
+    if (userAttr === "./pictures/scissors.svg" && computerAttr === "./pictures/paper.svg") { 
+      userChoice.setAttribute("src", "./pictures/winner-scissors.svg");
+      computerChoice.setAttribute("src", "./pictures/loser-paper.svg");
+      userScore = ++userScore;
+    }
+    if (userAttr === "./pictures/scissors.svg" && computerAttr === "./pictures/rock.svg") { 
+      userChoice.setAttribute("src", "./pictures/loser-scissors.svg"); 
+      computerChoice.setAttribute("src", "./pictures/winner-rock.svg"); 
+      computerScore= ++computerScore;
+    }
+    if(userAttr === "./pictures/rock.svg" && computerAttr === "./pictures/scissors.svg") { 
+      userChoice.setAttribute("src", "./pictures/winner-rock.svg"); 
+      computerChoice.setAttribute("src", "./pictures/loser-scissors.svg"); 
+      userScore = ++userScore;
+    }
+    if(userAttr === "./pictures/rock.svg" && computerAttr === "./pictures/paper.svg") {
+      userChoice.setAttribute("src", "./pictures/loser-rock.svg");
+      computerChoice.setAttribute("src", "./pictures/winner-paper.svg");
+      computerScore= ++computerScore;
     }
 
-    userChoice.setAttribute("src", winner);
-    computerChoice.setAttribute("src", loser);
-  }
+    console.log(userScore);
+    document.querySelector('#user__scoor').innerHTML = userScore;
+    document.querySelector('#computer__scoor').innerHTML = computerScore;
+    // document.getElementById('user__scoor').set = userScore;
+    // document.getElementById('computer__scoor').setAttribute('h3', computerScore);
+    // console.log(document.getElementById('user__scoor').getAttribute('h3'));
+    // console.log(document.getElementById('user__scoor').getAttribute('h3'));
+}
+
 
 
 function showResult(event) {
@@ -156,10 +165,8 @@ function showResult(event) {
   computerChoiceFunction();
   userChoice = document.getElementById('user__picture');
 
-
   let userAttr =  event.target.getAttribute('src');
   let computerAttr = computerChoice.getAttribute('src');
-  // console.log(event.target.getAttribute('src'));
   comparingChoices(userAttr, computerAttr);
 
 
@@ -187,6 +194,4 @@ function showResult(event) {
   }, 2000);
   
 }
-
-
 
