@@ -2,10 +2,19 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
     background-color: black;
 }
 
+html, body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    height: 900px;
+}
 .container {
     height: 300px;
     font-family: 'Monomaniac One', sans-serif;
@@ -110,4 +119,18 @@
 .points {
     display: flex;
     gap: 270px
+}
+
+.end__game {
+    color: white;
+    font-family: 'Monomaniac One', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.end__message {
+    font-size: 60px;
+    margin-bottom: 25px;
 }

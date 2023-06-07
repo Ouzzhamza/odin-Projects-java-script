@@ -168,10 +168,7 @@ function showResult(event) {
   let userAttr =  event.target.getAttribute('src');
   let computerAttr = computerChoice.getAttribute('src');
   comparingChoices(userAttr, computerAttr);
-
-
-
-
+ 
   //~ this part works on replacing the weapons__container by battle__container
   // get the target
   let target = event.target;
@@ -192,6 +189,16 @@ function showResult(event) {
     weaponsContainer.style.animation = "0s";
     weaponsContainer.style.display = "flex";
   }, 2000);
-  
+  // if (userScore == 2)
+  // {
+  //   // let winner_body = document.getElementsByTagName('body');
+  //   document.body.style.opacity = "0";
+  // }
+  // document.body.style.opacity = "0";
+  // if (computerScore == 2)
+  // alert("ooh better luck next time");
 }
+
+let main = document.querySelector('.main');
+main.style.display = "none"
 
