@@ -62,7 +62,7 @@ html, body {
 
 .weapons__container {
     position:absolute;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     gap: 200px;
@@ -91,7 +91,7 @@ html, body {
 
 
 .result__container {
-    display: flex;
+    display: none;
     flex-direction: column;
     height: 200px;
     margin: 20px;
@@ -133,4 +133,21 @@ html, body {
 .end__message {
     font-size: 60px;
     margin-bottom: 25px;
+}
+.end__game a {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: black;
+    background-color:white;
+    height: 40px;
+    width: 90px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.end__game a:hover{
+    transform: scale(1.09);
+    box-shadow: 0 0 25px white;
 }
