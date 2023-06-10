@@ -2,6 +2,14 @@ window.onload  = onloadFunction();
 
 var greetingsWrapper;
 var showContainers;
+var battleContainer;
+var weaponsContainer;
+var computerAttr;
+var userAttr;
+let userChoice;
+let computerChoice;
+let userScore = 0;
+let computerScore= 0;
 
 function onloadFunction() {
   fadeIn();
@@ -93,160 +101,131 @@ function picturesEffects() {
 
 
 function changeContainers() {
-    document.querySelectorAll('.main__img').forEach(function(image){
-    image.addEventListener("click", addEventListener, showButtleContainer);
+  document.querySelectorAll('.main__img').forEach(function(image){
+    image.addEventListener("click", (event)=> {
+      hideWeaponsContainer();
+      showButtleContainer();
+    });
   });
 }
 
 
-function hideWeaponsContainer(event) {
-  
-  console.log("hello1");
+function hideWeaponsContainer() {
   let target = event.target;
   let domElement = target instanceof Node ? target : document.getElementById(target);
-  let weaponsContainer = domElement.parentElement;
+  weaponsContainer = domElement.parentElement;
   weaponsContainer.style.display = "none";
 }
 
 
 function showButtleContainer() {
 
-  console.log("hello");
-  let battleContainer = document.querySelector('.battle__container');
+  setComputerChoice();
+  setUserChoice();
+  setProperChoices();
+  battleContainer = document.querySelector('.battle__container');
   let animation = document.querySelector('.main__img');
   battleContainer.style.display = "flex";
+  returnToDefault();
 }
 
 
+function setComputerChoice() {
+
+computerChoice = document.getElementById('computer__picture');
+const images = ["paper.svg", "rock.svg", "scissors.svg"];
+const randomImage = images[Math.floor(Math.random() * images.length)];
+computerChoice.setAttribute('src', `./pictures/${randomImage}`);
+computerAttr = computerChoice.getAttribute('src');
+}
+
+function setUserChoice() {
+
+  userChoice = document.getElementById('user__picture');
+  userAttr =  event.target.getAttribute('src');
+}
 
 
+function returnToDefault() {
+  setTimeout(() => {
+    checkScoore();
+    battleContainer.style.display = "none";
+    weaponsContainer.style.animation = "0s";
+    weaponsContainer.style.display = "flex";
+  }, 1500);
+}
+
+  function setProperChoices() { 
+    userChoice.setAttribute("src", userAttr); 
+    computerChoice.setAttribute("src", computerAttr); 
+
+    if (userAttr === "./pictures/paper.svg" && computerAttr === "./pictures/rock.svg") { 
+      userChoice.setAttribute("src", "./pictures/winner-paper.svg"); 
+      computerChoice.setAttribute("src", "./pictures/loser-rock.svg");
+      userScore = ++userScore;
+    }
+    if (userAttr === "./pictures/paper.svg" && computerAttr === "./pictures/scissors.svg") {
+      userChoice.setAttribute("src", "./pictures/loser-paper.svg"); 
+      computerChoice.setAttribute("src", "./pictures/winner-scissors.svg");
+      computerScore= ++computerScore;
+    } 
+    if (userAttr === "./pictures/scissors.svg" && computerAttr === "./pictures/paper.svg") { 
+      userChoice.setAttribute("src", "./pictures/winner-scissors.svg");
+      computerChoice.setAttribute("src", "./pictures/loser-paper.svg");
+      userScore = ++userScore;
+    }
+    if (userAttr === "./pictures/scissors.svg" && computerAttr === "./pictures/rock.svg") { 
+      userChoice.setAttribute("src", "./pictures/loser-scissors.svg"); 
+      computerChoice.setAttribute("src", "./pictures/winner-rock.svg"); 
+      computerScore= ++computerScore;
+    }
+    if(userAttr === "./pictures/rock.svg" && computerAttr === "./pictures/scissors.svg") { 
+      userChoice.setAttribute("src", "./pictures/winner-rock.svg"); 
+      computerChoice.setAttribute("src", "./pictures/loser-scissors.svg"); 
+      userScore = ++userScore;
+    }
+    if(userAttr === "./pictures/rock.svg" && computerAttr === "./pictures/paper.svg") {
+      userChoice.setAttribute("src", "./pictures/loser-rock.svg");
+      computerChoice.setAttribute("src", "./pictures/winner-paper.svg");
+      computerScore= ++computerScore;
+    }
+
+    // console.log(userScore);
+    document.querySelector('#user__scoor').innerHTML = userScore;
+    document.querySelector('#computer__scoor').innerHTML = computerScore;
+}
 
 
+function checkScoore() {
+
+  if (userScore == 2 || computerScore == 2) {
+    setEngGamePage();
+    let main = document.querySelector('.main');
+    main.style.display = "none"
+    let retrydiv = document.querySelector('.end__game');
+    retrydiv.style.display = "flex";
+  }
+}
 
 
-// //global variable of user choice  and comouter choice
+function setEngGamePage() {
+  
+  let text = document.querySelector('.end__message');
+  if (userScore == 2)
+    text.textContent = "you won it's your lucky day, go buy some lottery";
+    document.querySelectorAll('.retry').forEach(function(button){
+      button.addEventListener("click", retry);
+    });
+}
 
-
-
-
-// setTimeout(() => {
-// let h1 = document.getElementById('salut');
-// h1.textContent = "";
-// }, 10000)
-
-
-// let userChoice;
-// let computerChoice;
-// let userScore = 0;
-// let computerScore= 0; 
-
-// // The zoomImage function scales the image it is called on by 1.09 and adds a cursor pointer and boxShadow of 0 0 25px white.
-
-
-// function computerChoiceFunction() {
-
-// computerChoice = document.getElementById('computer__picture');
-
-// const images = ["paper.svg", "rock.svg", "scissors.svg"];
-
-// // Get a random image from the images array.
-// const randomImage = images[Math.floor(Math.random() * images.length)];
-
-
-// computerChoice.setAttribute('src', `./pictures/${randomImage}`);
-
-// }
-
-
-//   function comparingChoices(userAttr, computerAttr) { 
-//     userChoice.setAttribute("src", userAttr); 
-//     computerChoice.setAttribute("src", computerAttr); 
-
-//     if (userAttr === "./pictures/paper.svg" && computerAttr === "./pictures/rock.svg") { 
-//       userChoice.setAttribute("src", "./pictures/winner-paper.svg"); 
-//       computerChoice.setAttribute("src", "./pictures/loser-rock.svg");
-//       userScore = ++userScore;
-//     }
-//     if (userAttr === "./pictures/paper.svg" && computerAttr === "./pictures/scissors.svg") {
-//       userChoice.setAttribute("src", "./pictures/loser-paper.svg"); 
-//       computerChoice.setAttribute("src", "./pictures/winner-scissors.svg");
-//       computerScore= ++computerScore;
-//     } 
-//     if (userAttr === "./pictures/scissors.svg" && computerAttr === "./pictures/paper.svg") { 
-//       userChoice.setAttribute("src", "./pictures/winner-scissors.svg");
-//       computerChoice.setAttribute("src", "./pictures/loser-paper.svg");
-//       userScore = ++userScore;
-//     }
-//     if (userAttr === "./pictures/scissors.svg" && computerAttr === "./pictures/rock.svg") { 
-//       userChoice.setAttribute("src", "./pictures/loser-scissors.svg"); 
-//       computerChoice.setAttribute("src", "./pictures/winner-rock.svg"); 
-//       computerScore= ++computerScore;
-//     }
-//     if(userAttr === "./pictures/rock.svg" && computerAttr === "./pictures/scissors.svg") { 
-//       userChoice.setAttribute("src", "./pictures/winner-rock.svg"); 
-//       computerChoice.setAttribute("src", "./pictures/loser-scissors.svg"); 
-//       userScore = ++userScore;
-//     }
-//     if(userAttr === "./pictures/rock.svg" && computerAttr === "./pictures/paper.svg") {
-//       userChoice.setAttribute("src", "./pictures/loser-rock.svg");
-//       computerChoice.setAttribute("src", "./pictures/winner-paper.svg");
-//       computerScore= ++computerScore;
-//     }
-
-//     console.log(userScore);
-//     document.querySelector('#user__scoor').innerHTML = userScore;
-//     document.querySelector('#computer__scoor').innerHTML = computerScore;
-//     // document.getElementById('user__scoor').set = userScore;
-//     // document.getElementById('computer__scoor').setAttribute('h3', computerScore);
-//     // console.log(document.getElementById('user__scoor').getAttribute('h3'));
-//     // console.log(document.getElementById('user__scoor').getAttribute('h3'));
-// }
-
-
-
-// function showResult(event) {
-
-//   computerChoiceFunction();
-//   userChoice = document.getElementById('user__picture');
-
-//   let userAttr =  event.target.getAttribute('src');
-//   let computerAttr = computerChoice.getAttribute('src');
-//   comparingChoices(userAttr, computerAttr);
- 
-//   //~ this part works on replacing the weapons__container by battle__container
-;
-
-//   // Get the parent container of the DOMElement object
-
-
-
-//   setTimeout(() => {
-//     battleContainer.style.display = "none";
-//     weaponsContainer.style.animation = "0s";
-//     weaponsContainer.style.display = "flex";
-//   }, 2000);
-// //   // if (userScore == 2)
-// //   // {
-// //   //   // let winner_body = document.getElementsByTagName('body');
-// //   //   document.body.style.opacity = "0";
-// //   // }
-// //   // document.body.style.opacity = "0";
-// //   // if (computerScore == 2)
-// //   // alert("ooh better luck next time");
-// }
-
-
-// let main = document.querySelector('.main');
-// main.style.display = "none"
-
-let retrydiv = document.querySelector('.end__game');
-retrydiv.style.display = "none";
-
-// document.querySelectorAll('.retry').forEach(function(button){
-
-//   button.addEventListener("click", retry);
-// });
-
-// function retry(event) {
-
-// }
+function retry(){
+  console.log("ret");
+  userScore = 0;
+  computerScore = 0;
+  document.querySelector('#user__scoor').innerHTML = userScore;
+  document.querySelector('#computer__scoor').innerHTML = computerScore;
+  let main = document.querySelector('.main');
+  main.style.display = "block"
+  let retrydiv = document.querySelector('.end__game');
+  retrydiv.style.display = "none";
+}
