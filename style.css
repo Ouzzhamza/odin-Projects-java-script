@@ -36,17 +36,11 @@ html, body {
     z-index: 1;
 }
 .greetings .letter {
-    transform-origin: 50% 100%;
+
     display: inline-block;
-    line-height: 1em;
+    background: transparent;
 }
 
-.cheering .letter {
-  opacity: 1;
-  transform-origin: 100% 50%;
-  display: inline-block;
-  line-height: 1em;
-}
 .main__container {
     display: flex;
     justify-content: center;
@@ -66,8 +60,6 @@ html, body {
     justify-content: center;
     align-items: center;
     gap: 200px;
-    /* animation: fade-in 10s linear infinite;
-    animation-iteration-count: 1; */
 }
 @keyframes fade-in {
     0%{
@@ -98,8 +90,6 @@ html, body {
     align-items: center;
     font-family: 'Monomaniac One', sans-serif;
     color: white;
-    /* animation: fade-in 10s linear infinite;
-    animation-iteration-count: 1; */
 }
 
 .result__container h2 {
@@ -145,7 +135,6 @@ html, body {
     border-radius: 10px;
     cursor: pointer;
 }
-
 
 .end__game a:hover{
     transform: scale(1.09);

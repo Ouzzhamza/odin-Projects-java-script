@@ -1,5 +1,4 @@
 window.onload  = onloadFunction();
-
 var greetingsWrapper;
 var showContainers;
 var battleContainer;
@@ -31,19 +30,47 @@ function fadeIn() {
   }, 6000);
 }
 
+// function animateText() {
+//   greetingsWrapper = document.querySelector('.greetings .text-wraper');
+//   greetingsWrapper.innerHTML = greetingsWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+//   anime.timeline({loop: false})
+//   .add({
+//     targets: '.greetings .letter',
+//     scale: [0, 1],
+//     duration: 1000,
+//     elasticity: 1000,
+//     delay: (el, i) => 50 * (i + 1),
+//   })
+//   const animation = gsap.from(".greetings .letter", {
+//   scale: [0, 1],
+//   duration: 1000,
+//   elasticity: 1000,
+//   delay: (el, i) => 50 * (i+1),
+// });
+// }
+
 function animateText() {
   greetingsWrapper = document.querySelector('.greetings .text-wraper');
   greetingsWrapper.innerHTML = greetingsWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-  anime.timeline({loop: false})
-  .add({
-    targets: '.greetings .letter',
-    scale: [0, 1],
-    duration: 1000,
-    elasticity: 1000,
-    delay: (el, i) => 50 * (i+1),
-  })
-}
-
+  
+  // Create a new animation timeline
+  const animationTimeline = new TimelineMax();
+  
+  // Add an animation to the timeline that scales the letters from 0 to 1 in size
+  animationTimeline.from(".greetings .letter", {
+    duration: 0.8,
+    opacity: 0,
+    scale: 0,
+    y: 10,
+    rotationX: 180,
+    transformOrigin: "0% 50% -50",
+    ease: "back",
+    stagger: 0.01
+  });
+  
+  // Play the animation timeline
+  animationTimeline.play();
+  }
 
 function startGame() {
   showMainContainer();
