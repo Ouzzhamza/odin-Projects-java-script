@@ -198,7 +198,7 @@ function returnToDefault() {
 
 function checkScoore() {
 
-  if (userScore == 2 || computerScore == 2) {
+  if (userScore == 5 || computerScore == 5) {
     setEngGamePage();
     let main = document.querySelector('.main');
     main.style.display = "none"
@@ -211,7 +211,7 @@ function checkScoore() {
 function setEngGamePage() {
   
   let text = document.querySelector('.end__message');
-  if (userScore == 2)
+  if (userScore == 5)
     text.textContent = "you won it's your lucky day, go buy some lottery";
     document.querySelectorAll('.retry').forEach(function(button){
       button.addEventListener("click", retry);
